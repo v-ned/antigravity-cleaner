@@ -1,0 +1,105 @@
+{
+    "name": "antigravity-cleaner",
+    "displayName": "Antigravity Cleaner",
+    "description": "Clean Antigravity brain cache with a single click",
+    "version": "1.1.5",
+    "publisher": "VNED-PRO",
+    "author": {
+        "name": "VNED.PRO",
+        "url": "https://vned.pro"
+    },
+    "homepage": "https://vned.pro",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/v-ned/antigravity-cleaner/"
+    },
+    "bugs": {
+        "url": "https://github.com/v-ned/antigravity-cleaner/issues"
+    },
+    "icon": "resources/icon.png",
+    "license": "MIT",
+    "keywords": [
+        "antigravity",
+        "cleaner",
+        "cache",
+        "brain",
+        "cleanup",
+        "vned"
+    ],
+    "engines": {
+        "vscode": "^1.75.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "antigravity-cleaner.clean",
+                "title": "Clean All Cache Folders",
+                "category": "Antigravity",
+                "icon": "$(trash)"
+            },
+            {
+                "command": "antigravity-cleaner.refresh",
+                "title": "Refresh Cache View",
+                "category": "Antigravity",
+                "icon": "$(refresh)"
+            }
+        ],
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "antigravity-cleaner",
+                    "title": "Antigravity Cleaner",
+                    "icon": "resources/broom.svg"
+                }
+            ]
+        },
+        "views": {
+            "antigravity-cleaner": [
+                {
+                    "type": "webview",
+                    "id": "antigravity-cleaner-view",
+                    "name": "Brain Cache"
+                }
+            ]
+        },
+        "menus": {
+            "view/title": [
+                {
+                    "command": "antigravity-cleaner.refresh",
+                    "when": "view == antigravity-cleaner-view",
+                    "group": "navigation"
+                },
+                {
+                    "command": "antigravity-cleaner.clean",
+                    "when": "view == antigravity-cleaner-view",
+                    "group": "navigation"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.75.0",
+        "@types/glob": "^8.0.0",
+        "@types/mocha": "^10.0.1",
+        "@types/node": "16.x",
+        "@typescript-eslint/eslint-plugin": "^5.45.0",
+        "@typescript-eslint/parser": "^5.45.0",
+        "eslint": "^8.28.0",
+        "glob": "^8.0.3",
+        "mocha": "^10.1.0",
+        "typescript": "^4.9.3",
+        "@vscode/test-electron": "^2.2.0"
+    }
+}
